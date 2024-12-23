@@ -26,6 +26,7 @@ public class DialogueManager : MonoBehaviour
 
     private Queue<string> sentences;
     private bool isDialogueActive;
+    public bool isDialogueFinished = false;
     private GameObject player;
 
     private void Start()
@@ -88,6 +89,7 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueBox.SetActive(false);
         isDialogueActive = false;
+        isDialogueFinished = true;
 
         player.GetComponent<PlayerMovement>().canMove = true;
     }
