@@ -2,20 +2,21 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private CharacterController controller;
+    private Rigidbody rb;
+    private Animator animator;
 
     [SerializeField] private float speed = 12f;
-
     public bool canMove = true;
 
     private void Start()
     {
-        controller = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        if(canMove)
+        if (canMove)
         {
             Movement();
         }
@@ -28,6 +29,9 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
 
-        controller.Move(move * speed * Time.deltaTime);
+        rb.linearVelocity = new Vector3(move.x * speed, rb.linearVelocity.y, move.z * speed);
+
+        // Mise à jour des animations
+        animator.SetFloat("xVelocity", Mathf.Abs(x) + Mathf.Abs(z));
     }
 }

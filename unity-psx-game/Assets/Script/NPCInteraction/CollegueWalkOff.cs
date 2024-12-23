@@ -39,7 +39,7 @@ public class CollegueWalkOff : MonoBehaviour
 
     private void StartMoving()
     {
-        gameObject.layer = 0;
+        gameObject.layer = 7;
         animator.SetBool("isWalking", true);
         isMoving = true;
         currentWaypointIndex = 0;
